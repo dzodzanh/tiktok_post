@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hàng chờ đăng TikTok</title>
+<meta name="description" content="Hàng chờ bài TikTok đã chuẩn bị: lưu ảnh, copy caption, đánh dấu đã đăng.">
+<meta name="theme-color" content="#F3F4F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1115" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Hàng chờ">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231F6FEB'/%3E%3Cpath d='M30 52l14 14 26-30' stroke='%23fff' stroke-width='10' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  /* Layout: one phone-width column of post cards; each card = slide filmstrip + copy fields + one state action. */
+  :root {
+    --bg: #F3F4F6;
+    --surface: #FFFFFF;
+    --ink: #14161B;
+    --muted: #5F6672;
+    --line: #DFE2E8;
+    --accent: #1F6FEB;
+    --accent-ink: #FFFFFF;
+    --done: #12805C;
+    --done-bg: #E3F4EC;
+    --wait: #9A5B00;
+    --wait-bg: #FFF1D6;
+    --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+    --body: "Instrument Sans", -apple-system, "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0F1115; --surface: #191C22; --ink: #EEF0F4; --muted: #9AA2AF; --line: #2A2F38;
+      --accent: #5B9BFF; --accent-ink: #0B0D11; --done: #4FD1A1; --done-bg: #12312A; --wait: #F2B65A; --wait-bg: #3A2C12;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0F1115; --surface: #191C22; --ink: #EEF0F4; --muted: #9AA2AF; --line: #2A2F38;
+    --accent: #5B9BFF; --accent-ink: #0B0D11; --done: #4FD1A1; --done-bg: #12312A; --wait: #F2B65A; --wait-bg: #3A2C12;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 var(--body); }
+  .wrap { max-width: 560px; margin: 0 auto; padding-inline: 16px; padding-block: 20px 48px; display: grid; gap: 18px; }
+  header { display: grid; gap: 12px; }
+  h1 { font: 700 1.75rem/1.1 var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); font-size: .9rem; margin: 0; }
+  .progress { display: flex; align-items: center; gap: 10px; font: 500 .8rem var(--mono); color: var(--muted); }
+  .bar { flex: 1; height: 6px; background: var(--line); border-radius: 99px; overflow: hidden; }
+  .bar > i { display: block; height: 100%; width: 0; background: var(--done); transition: width .3s; }
+  .chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { flex: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 99px;
+          padding: 6px 12px; font: 500 .85rem var(--body); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+  .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .chip.none { color: var(--muted); border-style: dashed; cursor: default; }
+  .badge { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: var(--wait-bg); color: var(--wait);
+           font: 600 .7rem/18px var(--mono); text-align: center; font-variant-numeric: tabular-nums; }
+  .chip[aria-pressed="true"] .badge { background: var(--accent); color: var(--accent-ink); }
+  .nav { display: grid; gap: 8px; }
+  .nav-row { display: grid; grid-template-columns: 74px minmax(0, 1fr); align-items: center; gap: 8px; }
+  .chip:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .label { font: 500 .7rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+  .post { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; display: grid; gap: 12px; min-width: 0; }
+  .post.is-done { opacity: .72; }
+  .post-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .acct { font: 600 .9rem var(--body); }
+  .meta { color: var(--muted); font-size: .82rem; min-width: 0; }
+  .status { margin-left: auto; font: 500 .72rem var(--mono); padding: 3px 9px; border-radius: 99px; letter-spacing: .03em; }
+  .status.wait { background: var(--wait-bg); color: var(--wait); }
+  .status.done { background: var(--done-bg); color: var(--done); }
+
+  .strip { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 4px; }
+  .slide { flex: none; width: 31%; max-width: 150px; aspect-ratio: 9 / 16; border-radius: 10px; overflow: hidden; position: relative;
+           border: 1px solid var(--line); background: var(--line); scroll-snap-align: start; cursor: zoom-in; padding: 0; }
+  .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vid { width: min(240px, 70%); aspect-ratio: 9 / 16; max-width: 100%; border-radius: 10px; background: #000; display: block; }
+  a.btn { text-align: center; text-decoration: none; box-sizing: border-box; }
+  .slide b { position: absolute; left: 6px; top: 6px; font: 500 .68rem var(--mono); background: rgba(0,0,0,.6); color: #fff; padding: 1px 6px; border-radius: 6px; }
+
+  .field { display: grid; gap: 4px; min-width: 0; }
+  .field-row { display: flex; gap: 8px; align-items: flex-start; }
+  .field-text { flex: 1; min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .92rem; }
+  .field-text.empty { color: var(--muted); font-style: italic; }
+  .copy { flex: none; border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 8px;
+          padding: 5px 10px; font: 500 .8rem var(--body); cursor: pointer; }
+  .copy.ok { color: var(--done); border-color: var(--done); }
+  .reminders { display: flex; flex-wrap: wrap; gap: 6px; }
+  .rem { font-size: .8rem; color: var(--muted); border: 1px dashed var(--line); border-radius: 8px; padding: 3px 8px; }
+  .rem-link { color: var(--accent); border-style: solid; border-color: var(--accent); text-decoration: none; font-weight: 600; padding: 6px 10px; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn { flex: 1; min-width: 150px; border: 0; border-radius: 10px; padding: 11px 14px; font: 600 .92rem var(--body); cursor: pointer; }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); }
+  .btn.ghost { background: var(--bg); color: var(--ink); border: 1px solid var(--line); }
+  .btn:disabled { opacity: .55; cursor: default; }
+  .note { color: var(--muted); font-size: .8rem; margin: 0; }
+  .empty-state { text-align: center; color: var(--muted); padding: 32px 8px; border: 1px dashed var(--line); border-radius: 16px; }
+
+  .how { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+  .how ol { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 4px; font-size: .9rem; }
+  .sync { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .link-btn { border: 0; background: none; color: var(--accent); font: 500 .82rem var(--body); cursor: pointer; padding: 2px 0; text-decoration: underline; }
+
+  .lightbox { position: fixed; inset: 0; background: rgba(5,6,8,.94); display: grid; grid-template-rows: auto 1fr auto; z-index: 10;
+              padding: calc(env(safe-area-inset-top, 0px) + 10px) 12px calc(env(safe-area-inset-bottom, 0px) + 12px); }
+  .lb-top, .lb-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: #fff; font: 500 .85rem var(--mono); }
+  .lb-img { min-height: 0; display: grid; place-items: center; }
+  .lb-img img { max-height: 100%; max-width: 100%; border-radius: 8px; -webkit-touch-callout: default; user-select: auto; }
+  .lb-btn { background: rgba(255,255,255,.14); color: #fff; border: 0; border-radius: 10px; padding: 9px 14px; font: 600 .9rem var(--body); cursor: pointer; }
+  .savemode { position: fixed; inset: 0; background: rgba(5,6,8,.96); z-index: 10; overflow-y: auto;
+              padding: 0 16px calc(env(safe-area-inset-bottom, 0px) + 24px); }
+  .sm-bar { position: sticky; top: 0; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            padding: calc(env(safe-area-inset-top, 0px) + 10px) 0 10px; background: rgba(5,6,8,.96); color: #fff; font-size: .85rem; }
+  .sm-list { display: grid; gap: 18px; max-width: 420px; margin: 0 auto; }
+  .sm-list figure { margin: 0; display: grid; gap: 6px; }
+  .sm-list figcaption { color: #fff; font: 600 .9rem var(--mono); }
+  .sm-list img { width: 100%; border-radius: 10px; -webkit-touch-callout: default; user-select: auto; }
+  .toast { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 18px); transform: translateX(-50%);
+           background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 10px; font-size: .85rem; z-index: 20;
+           max-width: calc(100vw - 32px); text-align: center; }
+  @media (prefers-reduced-motion: reduce) { .bar > i { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Hàng chờ đăng</h1>
+      <p class="sub" id="sub">Bài Madison đã chuẩn bị. Lưu ảnh, copy caption, đăng trong app TikTok.</p>
+    </div>
+    <div class="nav">
+      <div class="nav-row"><span class="label">App</span><div class="chips" id="apps" role="group" aria-label="App"></div></div>
+      <div class="nav-row"><span class="label">Tài khoản</span><div class="chips" id="accounts" role="group" aria-label="Tài khoản"></div></div>
+      <div class="nav-row"><span class="label">Ngày</span><div class="chips" id="dates" role="group" aria-label="Ngày"></div></div>
+    </div>
+    <div class="progress"><span id="progress-text">0/0 đã đăng</span><div class="bar"><i id="progress-bar"></i></div></div>
+  </header>
+
+  <main id="list" aria-live="polite"><div class="empty-state">Đang tải hàng chờ…</div></main>
+
+  <section class="how">
+    <span class="label">Cách đăng một bài</span>
+    <ol>
+      <li>Bấm <b>Lưu tất cả ảnh</b> → <b>Lưu N ảnh</b> trong bảng chia sẻ (hoặc chạm từng slide rồi nhấn giữ → <b>Lưu vào Ảnh</b>, theo đúng thứ tự số).</li>
+      <li>TikTok → <b>+</b> → chọn ảnh theo thứ tự → chọn nhạc gợi ý.</li>
+      <li>Dán title và caption, bật <b>Content disclosure → Your brand</b>.</li>
+      <li>Đăng xong quay lại đây bấm <b>Đánh dấu đã đăng</b>.</li>
+    </ol>
+  </section>
+
+  <section class="how">
+    <span class="label">Trạng thái đã đăng</span>
+    <p class="note" id="storage-note">Lưu trên máy này (trình duyệt). Muốn Madison biết đã đăng những bài nào thì bấm “Gửi cho Madison” rồi dán vào khung chat.</p>
+    <div class="sync">
+      <button class="link-btn" id="export" type="button">Gửi cho Madison</button>
+      <button class="link-btn" id="import" type="button">Nhập trạng thái</button>
+      <span class="note" id="built"></span>
+    </div>
+  </section>
+</div>
+
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const POSTED_KEY = "tiktok-posted";
+const NAV_KEY = "tiktok-queue-nav";
+const NO_ACCOUNT = "Chưa gán";
+const state = { posts: [], registry: [], posted: {}, app: null, account: null, date: null, generated: "" };
+try { Object.assign(state, JSON.parse(localStorage.getItem(NAV_KEY) || "{}")); } catch (e) {}
+
+function saveNav() {
+  try { localStorage.setItem(NAV_KEY, JSON.stringify({ app: state.app, account: state.account, date: state.date })); } catch (e) {}
+}
+function loadPosted() {
+  try { return JSON.parse(localStorage.getItem(POSTED_KEY) || "{}"); } catch (e) { return {}; }
+}
+function savePosted(map) {
+  try { localStorage.setItem(POSTED_KEY, JSON.stringify(map)); }
+  catch (e) { toast("Trình duyệt không lưu được trạng thái"); }
+}
+
+function fmtDate(iso) {
+  const [y, m, d] = iso.split("-");
+  return `${d}/${m}`;
+}
+function prettyFormat(p) {
+  return p.format.replace(/-/g, " ") + (p.number ? " #" + p.number : "");
+}
+function toast(msg) {
+  const t = document.createElement("div");
+  t.className = "toast"; t.textContent = msg; document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2200);
+}
+
+async function copyText(text, btn) {
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.textContent = "Đã copy"; btn.classList.add("ok");
+    setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("ok"); }, 1500);
+  } catch (e) {
+    const target = btn.closest(".field-row").querySelector(".field-text");
+    const range = document.createRange(); range.selectNodeContents(target);
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
+    toast("Đã bôi đen, bấm Copy của máy");
+  }
+}
+
+function field(label, text) {
+  const wrap = document.createElement("div");
+  wrap.className = "field";
+  const l = document.createElement("span"); l.className = "label"; l.textContent = label;
+  const row = document.createElement("div"); row.className = "field-row";
+  const t = document.createElement("div"); t.className = "field-text" + (text ? "" : " empty");
+  t.textContent = text || "(để trống)";
+  row.appendChild(t);
+  if (text) {
+    const b = document.createElement("button"); b.className = "copy"; b.type = "button"; b.textContent = "Copy";
+    b.addEventListener("click", () => copyText(text, b));
+    row.appendChild(b);
+  }
+  wrap.append(l, row);
+  return wrap;
+}
+
+function openLightbox(post, index) {
+  let i = index;
+  const lb = document.createElement("div");
+  lb.className = "lightbox"; lb.setAttribute("role", "dialog"); lb.setAttribute("aria-label", "Xem slide");
+  lb.innerHTML = `<div class="lb-top"><span id="lb-count"></span><button class="lb-btn" id="lb-close" type="button">Đóng</button></div>
+    <div class="lb-img"><img id="lb-img" alt=""></div>
+    <div class="lb-bottom"><button class="lb-btn" id="lb-prev" type="button">‹ Trước</button>
+    <span>Nhấn giữ ảnh để lưu</span><button class="lb-btn" id="lb-next" type="button">Sau ›</button></div>`;
+  const show = () => {
+    $("#lb-img", lb).src = post.slides[i];
+    $("#lb-img", lb).alt = `Slide ${i + 1}`;
+    $("#lb-count", lb).textContent = `Slide ${i + 1}/${post.slides.length}`;
+    $("#lb-prev", lb).disabled = i === 0;
+    $("#lb-next", lb).disabled = i === post.slides.length - 1;
+  };
+  $("#lb-close", lb).onclick = () => lb.remove();
+  $("#lb-prev", lb).onclick = () => { if (i > 0) { i--; show(); } };
+  $("#lb-next", lb).onclick = () => { if (i < post.slides.length - 1) { i++; show(); } };
+  lb.addEventListener("keydown", e => {
+    if (e.key === "Escape") lb.remove();
+    if (e.key === "ArrowLeft") $("#lb-prev", lb).click();
+    if (e.key === "ArrowRight") $("#lb-next", lb).click();
+  });
+  document.body.appendChild(lb); show(); $("#lb-close", lb).focus();
+}
+
+// Fallback when the share sheet is unavailable: every slide full-size, in order, for long-press → Save to Photos.
+function openSaveMode(post) {
+  const lb = document.createElement("div");
+  lb.className = "savemode"; lb.setAttribute("role", "dialog"); lb.setAttribute("aria-label", "Lưu ảnh");
+  const bar = document.createElement("div"); bar.className = "sm-bar";
+  const title = document.createElement("span");
+  title.textContent = `Nhấn giữ từng ảnh → Lưu vào Ảnh (${post.slides.length} ảnh, lưu từ 1 đến ${post.slides.length})`;
+  const close = document.createElement("button"); close.className = "lb-btn"; close.type = "button"; close.textContent = "Xong";
+  close.onclick = () => lb.remove();
+  bar.append(title, close);
+  const list = document.createElement("div"); list.className = "sm-list";
+  post.slides.forEach((src, k) => {
+    const fig = document.createElement("figure");
+    const cap = document.createElement("figcaption"); cap.textContent = `${k + 1}`;
+    const img = document.createElement("img"); img.src = src; img.alt = `Slide ${k + 1}`;
+    fig.append(cap, img); list.appendChild(fig);
+  });
+  lb.append(bar, list);
+  lb.addEventListener("keydown", e => { if (e.key === "Escape") lb.remove(); });
+  document.body.appendChild(lb); close.focus();
+}
+
+const baseName = post => `${(post.accounts[0] || "post").toLowerCase()}-${post.date}-${post.format}-${post.number}`;
+
+async function filesOf(post) {
+  if (post._files) return post._files;
+  const files = [];
+  for (let k = 0; k < post.slides.length; k++) {
+    const blob = await (await fetch(post.slides[k])).blob();
+    files.push(new File([blob], `${baseName(post)}-${String(k + 1).padStart(2, "0")}.jpg`, { type: "image/jpeg" }));
+  }
+  post._files = files;
+  return files;
+}
+
+// Desktop / browsers without file sharing: one <a download> per slide.
+async function downloadAll(post, btn) {
+  const files = await filesOf(post);
+  for (const f of files) {
+    const url = URL.createObjectURL(f);
+    const a = document.createElement("a");
+    a.href = url; a.download = f.name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+    await new Promise(r => setTimeout(r, 250));
+  }
+  toast(`Đã tải ${files.length} ảnh`);
+}
+
+// iPhone: share sheet → "Lưu N ảnh" puts them straight in Photos, in order.
+async function saveAll(post, btn) {
+  const label = post.video ? "Lưu video" : "Lưu tất cả ảnh";
+  const ready = !!post._files;
+  if (navigator.canShare && navigator.share) {
+    try {
+      if (!ready) { btn.disabled = true; btn.textContent = "Đang chuẩn bị…"; }
+      const files = await filesOf(post);
+      btn.disabled = false; btn.textContent = label;
+      if (navigator.canShare({ files })) {
+        await navigator.share({ files, title: post.title || "Slides" });
+        return;
+      }
+    } catch (e) {
+      btn.disabled = false; btn.textContent = label;
+      if (e && e.name === "AbortError") return;             // bảng chia sẻ bị đóng
+      if (e && e.name === "NotAllowedError" && !ready) {     // ảnh đã sẵn sàng, chạm lại là mở được
+        btn.textContent = "Chạm lần nữa để lưu";
+        return;
+      }
+      openSaveMode(post);
+      return;
+    }
+  }
+  try { await downloadAll(post, btn); }
+  catch (e) { openSaveMode(post); }
+  finally { btn.disabled = false; btn.textContent = label; }
+}
+
+async function saveVideo(post, btn) {
+  btn.disabled = true; btn.textContent = "Đang chuẩn bị…";
+  try {
+    const blob = await (await fetch(post.video)).blob();
+    const file = new File([blob], `${baseName(post)}.mp4`, { type: "video/mp4" });
+    if (navigator.canShare && navigator.share && navigator.canShare({ files: [file] })) {
+      btn.disabled = false; btn.textContent = "Lưu video";
+      await navigator.share({ files: [file] });
+      return;
+    }
+    const url = URL.createObjectURL(file);
+    const a = document.createElement("a"); a.href = url; a.download = file.name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  } catch (e) {
+    if (!(e && e.name === "AbortError")) toast("Bấm “Mở video” → nút Chia sẻ → Lưu video");
+  } finally { btn.disabled = false; btn.textContent = "Lưu video"; }
+}
+
+function togglePosted(post) {
+  const map = loadPosted();
+  if (map[post.key]) delete map[post.key];
+  else map[post.key] = { posted: true, at: new Date().toISOString(), accounts: post.accounts };
+  savePosted(map);
+  state.posted = map;
+  render();
+}
+
+function postCard(p) {
+  const done = !!state.posted[p.key];
+  const card = document.createElement("article");
+  card.className = "post" + (done ? " is-done" : "");
+  const head = document.createElement("div"); head.className = "post-head";
+  const acct = document.createElement("span"); acct.className = "acct"; acct.textContent = p.accounts.join(", ") || "Chưa gán tài khoản";
+  const meta = document.createElement("span"); meta.className = "meta"; meta.textContent = `${p.app_name} · ${prettyFormat(p)}`;
+  const st = document.createElement("span"); st.className = "status " + (done ? "done" : "wait"); st.textContent = done ? "Đã đăng" : "Chờ đăng";
+  head.append(acct, meta, st);
+
+  const strip = document.createElement("div"); strip.className = "strip";
+  if (p.video) {
+    const v = document.createElement("video"); v.className = "vid"; v.src = p.video; v.controls = true;
+    v.playsInline = true; v.preload = "metadata"; if (p.slides[0]) v.poster = p.slides[0];
+    strip.appendChild(v);
+  } else p.slides.forEach((src, k) => {
+    const b = document.createElement("button"); b.className = "slide"; b.type = "button";
+    b.setAttribute("aria-label", `Xem slide ${k + 1}`);
+    const img = document.createElement("img"); img.src = src; img.alt = ""; img.loading = "lazy";
+    const n = document.createElement("b"); n.textContent = k + 1;
+    b.append(img, n); b.addEventListener("click", () => openLightbox(p, k));
+    strip.appendChild(b);
+  });
+
+  const reminders = document.createElement("div"); reminders.className = "reminders";
+  const rems = ["Bật Your brand"];
+  if (p.music && !p.music_url) rems.unshift("Nhạc: " + p.music);
+  if (p.is_aigc) rems.push("Bật nhãn AI-generated");
+  if (p.music_url) {
+    const a = document.createElement("a"); a.className = "rem rem-link"; a.href = p.music_url;
+    a.target = "_blank"; a.rel = "noopener";
+    a.textContent = "♪ " + (p.music || "Mở nhạc") + " ↗";
+    reminders.appendChild(a);
+  }
+  rems.forEach(r => { const s = document.createElement("span"); s.className = "rem"; s.textContent = r; reminders.appendChild(s); });
+
+  const actions = document.createElement("div"); actions.className = "actions";
+  const save = document.createElement("button"); save.className = "btn ghost"; save.type = "button";
+  save.textContent = p.video ? "Lưu video" : "Lưu tất cả ảnh";
+  save.addEventListener("click", () => p.video ? saveVideo(p, save) : saveAll(p, save));
+  actions.appendChild(save);
+  if (!p.video) {
+    const one = document.createElement("button"); one.className = "btn ghost"; one.type = "button";
+    one.textContent = "Lưu từng ảnh";
+    one.addEventListener("click", () => openSaveMode(p));
+    actions.appendChild(one);
+  } else {
+    const open = document.createElement("a"); open.className = "btn ghost"; open.href = p.video; open.target = "_blank"; open.rel = "noopener";
+    open.textContent = "Mở video ↗";
+    actions.appendChild(open);
+  }
+  const mark = document.createElement("button"); mark.className = "btn " + (done ? "ghost" : "primary"); mark.type = "button";
+  mark.textContent = done ? "Bỏ đánh dấu" : "Đánh dấu đã đăng";
+  mark.addEventListener("click", () => togglePosted(p));
+  actions.appendChild(mark);
+
+  card.append(head, strip, field("Title", p.title), field("Caption", p.caption), reminders, actions);
+  return card;
+}
+
+function chip(label, pressed, onClick, pending) {
+  const c = document.createElement("button"); c.className = "chip"; c.type = "button";
+  c.setAttribute("aria-pressed", pressed ? "true" : "false");
+  const t = document.createElement("span"); t.textContent = label; c.appendChild(t);
+  if (pending) {
+    const b = document.createElement("span"); b.className = "badge"; b.textContent = pending;
+    b.setAttribute("aria-label", `${pending} bài chờ đăng`); c.appendChild(b);
+  }
+  c.addEventListener("click", onClick); return c;
+}
+
+function noneChip(label) {
+  const c = document.createElement("span"); c.className = "chip none"; c.textContent = label; return c;
+}
+
+const accountsOf = p => (p.accounts && p.accounts.length ? p.accounts : [NO_ACCOUNT]);
+const pendingIn = posts => posts.filter(p => !state.posted[p.key]).length;
+
+function render() {
+  // Level 1 — apps: registry (apps/<app>/app.md) plus any app that has posts.
+  const appNames = {};
+  state.registry.forEach(r => { appNames[r.app] = r.app_name; });
+  state.posts.forEach(p => { appNames[p.app] = appNames[p.app] || p.app_name; });
+  const apps = Object.keys(appNames).sort((x, y) => appNames[x].localeCompare(appNames[y]));
+  if (!apps.includes(state.app)) state.app = apps[0] || null;
+  const appPosts = state.posts.filter(p => p.app === state.app);
+
+  // Level 2 — accounts of that app: registered ones first, then any found on posts.
+  const reg = (state.registry.find(r => r.app === state.app) || {}).accounts || [];
+  const accounts = [...new Set([...reg, ...appPosts.flatMap(accountsOf)])];
+  if (!accounts.includes(state.account)) state.account = accounts.find(a => pendingIn(appPosts.filter(p => accountsOf(p).includes(a)))) || accounts[0] || null;
+  const acctPosts = appPosts.filter(p => accountsOf(p).includes(state.account));
+
+  // Level 3 — days that account has posts for, newest first.
+  const dates = [...new Set(acctPosts.map(p => p.date))].sort().reverse();
+  if (!dates.includes(state.date)) state.date = dates[0] || null;
+  saveNav();
+
+  $("#apps").replaceChildren(...apps.map(a => chip(appNames[a], a === state.app,
+    () => { state.app = a; state.account = null; state.date = null; render(); },
+    pendingIn(state.posts.filter(p => p.app === a)))));
+  $("#accounts").replaceChildren(...(accounts.length ? accounts.map(a => chip(a, a === state.account,
+    () => { state.account = a; state.date = null; render(); },
+    pendingIn(appPosts.filter(p => accountsOf(p).includes(a))))) : [noneChip("Chưa có tài khoản")]));
+  $("#dates").replaceChildren(...(dates.length ? dates.map(d => chip(fmtDate(d), d === state.date,
+    () => { state.date = d; render(); },
+    pendingIn(acctPosts.filter(p => p.date === d)))) : [noneChip("Chưa có bài")]));
+
+  const shown = acctPosts.filter(p => p.date === state.date);
+  const doneCount = shown.filter(p => state.posted[p.key]).length;
+  $("#progress-text").textContent = `${doneCount}/${shown.length} đã đăng`;
+  $("#progress-bar").style.width = shown.length ? (100 * doneCount / shown.length) + "%" : "0";
+
+  const list = $("#list");
+  if (!shown.length) {
+    list.innerHTML = "";
+    const e = document.createElement("div"); e.className = "empty-state";
+    e.textContent = state.account
+      ? `${state.account} chưa có bài nào trong hàng chờ. Nhắn Madison “chuẩn bị bài cho ${state.account}” để thêm.`
+      : "App này chưa có tài khoản TikTok nào. Thêm tài khoản rồi nhắn Madison chuẩn bị bài.";
+    list.appendChild(e);
+    return;
+  }
+  list.replaceChildren(...shown.sort((x, y) => (state.posted[x.key] ? 1 : 0) - (state.posted[y.key] ? 1 : 0)).map(postCard));
+  list.style.display = "grid"; list.style.gap = "14px";
+}
+
+async function exportPosted() {
+  const keys = Object.keys(state.posted).sort();
+  if (!keys.length) { toast("Chưa đánh dấu bài nào"); return; }
+  const text = "ĐÃ ĐĂNG (" + keys.length + " bài):\n" + keys.join("\n");
+  try { await navigator.clipboard.writeText(text); toast("Đã copy, dán vào chat với Madison"); }
+  catch (e) { prompt("Copy đoạn này gửi cho Madison:", text); }
+}
+
+function importPosted() {
+  const txt = prompt("Dán danh sách key đã đăng (mỗi dòng một key, hoặc JSON):");
+  if (!txt) return;
+  const map = loadPosted();
+  let n = 0;
+  try {
+    const obj = JSON.parse(txt);
+    Object.entries(obj).forEach(([k, v]) => { if (!map[k]) { map[k] = v && typeof v === "object" ? v : { posted: true }; n++; } });
+  } catch (e) {
+    txt.split(/\s*\n\s*/).map(s => s.trim()).filter(s => /__/.test(s)).forEach(k => {
+      if (!map[k]) { map[k] = { posted: true, at: new Date().toISOString() }; n++; }
+    });
+  }
+  savePosted(map); state.posted = map; render();
+  toast(n ? `Đã nhập ${n} bài` : "Không có key mới");
+}
+
+async function start() {
+  try {
+    const res = await fetch("queue.json?t=" + Date.now(), { cache: "no-store" });
+    const q = await res.json();
+    state.posts = q.posts || [];
+    state.registry = q.registry || [];
+    state.generated = q.generated || "";
+  } catch (e) {
+    $("#list").innerHTML = '<div class="empty-state">Không tải được hàng chờ. Kiểm tra mạng rồi tải lại trang.</div>';
+    return;
+  }
+  state.posted = loadPosted();
+  if (state.generated) $("#built").textContent = "Cập nhật: " + state.generated.replace("T", " ").slice(0, 16);
+  $("#export").addEventListener("click", exportPosted);
+  $("#import").addEventListener("click", importPosted);
+  render();
+}
+start();
+</script>
+</body>
+</html>
