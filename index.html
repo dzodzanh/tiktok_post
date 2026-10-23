@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hàng chờ đăng TikTok</title>
-<meta name="description" content="Hàng chờ bài TikTok đã chuẩn bị: lưu ảnh, copy caption, đánh dấu đã đăng.">
+<meta name="description" content="Hàng chờ bài TikTok đã chuẩn bị: lưu ảnh, copy title và caption, đăng trong app TikTok.">
 <meta name="theme-color" content="#F3F4F6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F1115" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,16 +50,13 @@
   header { display: grid; gap: 12px; }
   h1 { font: 700 1.75rem/1.1 var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
   .sub { color: var(--muted); font-size: .9rem; margin: 0; }
-  .progress { display: flex; align-items: center; gap: 10px; font: 500 .8rem var(--mono); color: var(--muted); }
-  .bar { flex: 1; height: 6px; background: var(--line); border-radius: 99px; overflow: hidden; }
-  .bar > i { display: block; height: 100%; width: 0; background: var(--done); transition: width .3s; }
   .chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
   .chips::-webkit-scrollbar { display: none; }
   .chip { flex: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 99px;
           padding: 6px 12px; font: 500 .85rem var(--body); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
   .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
   .chip.none { color: var(--muted); border-style: dashed; cursor: default; }
-  .badge { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: var(--wait-bg); color: var(--wait);
+  .badge { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: var(--line); color: var(--muted);
            font: 600 .7rem/18px var(--mono); text-align: center; font-variant-numeric: tabular-nums; }
   .chip[aria-pressed="true"] .badge { background: var(--accent); color: var(--accent-ink); }
   .nav { display: grid; gap: 8px; }
@@ -68,13 +65,9 @@
   .label { font: 500 .7rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 
   .post { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; display: grid; gap: 12px; min-width: 0; }
-  .post.is-done { opacity: .72; }
   .post-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .acct { font: 600 .9rem var(--body); }
   .meta { color: var(--muted); font-size: .82rem; min-width: 0; }
-  .status { margin-left: auto; font: 500 .72rem var(--mono); padding: 3px 9px; border-radius: 99px; letter-spacing: .03em; }
-  .status.wait { background: var(--wait-bg); color: var(--wait); }
-  .status.done { background: var(--done-bg); color: var(--done); }
 
   .strip { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 4px; }
   .slide { flex: none; width: 31%; max-width: 150px; aspect-ratio: 9 / 16; border-radius: 10px; overflow: hidden; position: relative;
@@ -104,8 +97,6 @@
 
   .how { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
   .how ol { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 4px; font-size: .9rem; }
-  .sync { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-  .link-btn { border: 0; background: none; color: var(--accent); font: 500 .82rem var(--body); cursor: pointer; padding: 2px 0; text-decoration: underline; }
 
   .lightbox { position: fixed; inset: 0; background: rgba(5,6,8,.94); display: grid; grid-template-rows: auto 1fr auto; z-index: 10;
               padding: calc(env(safe-area-inset-top, 0px) + 10px) 12px calc(env(safe-area-inset-bottom, 0px) + 12px); }
@@ -124,7 +115,6 @@
   .toast { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 18px); transform: translateX(-50%);
            background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 10px; font-size: .85rem; z-index: 20;
            max-width: calc(100vw - 32px); text-align: center; }
-  @media (prefers-reduced-motion: reduce) { .bar > i { transition: none; } }
 </style>
 </head>
 <body>
@@ -140,7 +130,7 @@
       <div class="nav-row"><span class="label">Tài khoản</span><div class="chips" id="accounts" role="group" aria-label="Tài khoản"></div></div>
       <div class="nav-row"><span class="label">Ngày</span><div class="chips" id="dates" role="group" aria-label="Ngày"></div></div>
     </div>
-    <div class="progress"><span id="progress-text">0/0 đã đăng</span><div class="bar"><i id="progress-bar"></i></div></div>
+    <p class="note" id="built"></p>
   </header>
 
   <main id="list" aria-live="polite"><div class="empty-state">Đang tải hàng chờ…</div></main>
@@ -151,40 +141,20 @@
       <li>Bấm <b>Lưu tất cả ảnh</b> → <b>Lưu N ảnh</b> trong bảng chia sẻ (hoặc chạm từng slide rồi nhấn giữ → <b>Lưu vào Ảnh</b>, theo đúng thứ tự số).</li>
       <li>TikTok → <b>+</b> → chọn ảnh theo thứ tự → chọn nhạc gợi ý.</li>
       <li>Dán title và caption, bật <b>Content disclosure → Your brand</b>.</li>
-      <li>Đăng xong quay lại đây bấm <b>Đánh dấu đã đăng</b>.</li>
     </ol>
-  </section>
-
-  <section class="how">
-    <span class="label">Trạng thái đã đăng</span>
-    <p class="note" id="storage-note">Lưu trên máy này (trình duyệt). Muốn Madison biết đã đăng những bài nào thì bấm “Gửi cho Madison” rồi dán vào khung chat.</p>
-    <div class="sync">
-      <button class="link-btn" id="export" type="button">Gửi cho Madison</button>
-      <button class="link-btn" id="import" type="button">Nhập trạng thái</button>
-      <span class="note" id="built"></span>
-    </div>
   </section>
 </div>
 
 <script>
 const $ = (s, el = document) => el.querySelector(s);
-const POSTED_KEY = "tiktok-posted";
 const NAV_KEY = "tiktok-queue-nav";
 const NO_ACCOUNT = "Chưa gán";
-const state = { posts: [], registry: [], posted: {}, app: null, account: null, date: null, generated: "" };
+const state = { posts: [], registry: [], app: null, account: null, date: null, generated: "" };
 try { Object.assign(state, JSON.parse(localStorage.getItem(NAV_KEY) || "{}")); } catch (e) {}
 
 function saveNav() {
   try { localStorage.setItem(NAV_KEY, JSON.stringify({ app: state.app, account: state.account, date: state.date })); } catch (e) {}
 }
-function loadPosted() {
-  try { return JSON.parse(localStorage.getItem(POSTED_KEY) || "{}"); } catch (e) { return {}; }
-}
-function savePosted(map) {
-  try { localStorage.setItem(POSTED_KEY, JSON.stringify(map)); }
-  catch (e) { toast("Trình duyệt không lưu được trạng thái"); }
-}
-
 function fmtDate(iso) {
   const [y, m, d] = iso.split("-");
   return `${d}/${m}`;
@@ -350,24 +320,13 @@ async function saveVideo(post, btn) {
   } finally { btn.disabled = false; btn.textContent = "Lưu video"; }
 }
 
-function togglePosted(post) {
-  const map = loadPosted();
-  if (map[post.key]) delete map[post.key];
-  else map[post.key] = { posted: true, at: new Date().toISOString(), accounts: post.accounts };
-  savePosted(map);
-  state.posted = map;
-  render();
-}
-
 function postCard(p) {
-  const done = !!state.posted[p.key];
   const card = document.createElement("article");
-  card.className = "post" + (done ? " is-done" : "");
+  card.className = "post";
   const head = document.createElement("div"); head.className = "post-head";
   const acct = document.createElement("span"); acct.className = "acct"; acct.textContent = p.accounts.join(", ") || "Chưa gán tài khoản";
   const meta = document.createElement("span"); meta.className = "meta"; meta.textContent = `${p.app_name} · ${prettyFormat(p)}`;
-  const st = document.createElement("span"); st.className = "status " + (done ? "done" : "wait"); st.textContent = done ? "Đã đăng" : "Chờ đăng";
-  head.append(acct, meta, st);
+  head.append(acct, meta);
 
   const strip = document.createElement("div"); strip.className = "strip";
   if (p.video) {
@@ -410,22 +369,17 @@ function postCard(p) {
     open.textContent = "Mở video ↗";
     actions.appendChild(open);
   }
-  const mark = document.createElement("button"); mark.className = "btn " + (done ? "ghost" : "primary"); mark.type = "button";
-  mark.textContent = done ? "Bỏ đánh dấu" : "Đánh dấu đã đăng";
-  mark.addEventListener("click", () => togglePosted(p));
-  actions.appendChild(mark);
-
   card.append(head, strip, field("Title", p.title), field("Caption", p.caption), reminders, actions);
   return card;
 }
 
-function chip(label, pressed, onClick, pending) {
+function chip(label, pressed, onClick, count) {
   const c = document.createElement("button"); c.className = "chip"; c.type = "button";
   c.setAttribute("aria-pressed", pressed ? "true" : "false");
   const t = document.createElement("span"); t.textContent = label; c.appendChild(t);
-  if (pending) {
-    const b = document.createElement("span"); b.className = "badge"; b.textContent = pending;
-    b.setAttribute("aria-label", `${pending} bài chờ đăng`); c.appendChild(b);
+  if (count) {
+    const b = document.createElement("span"); b.className = "badge"; b.textContent = count;
+    b.setAttribute("aria-label", `${count} bài`); c.appendChild(b);
   }
   c.addEventListener("click", onClick); return c;
 }
@@ -435,7 +389,6 @@ function noneChip(label) {
 }
 
 const accountsOf = p => (p.accounts && p.accounts.length ? p.accounts : [NO_ACCOUNT]);
-const pendingIn = posts => posts.filter(p => !state.posted[p.key]).length;
 
 function render() {
   // Level 1 — apps: registry (apps/<app>/app.md) plus any app that has posts.
@@ -449,7 +402,7 @@ function render() {
   // Level 2 — accounts of that app: registered ones first, then any found on posts.
   const reg = (state.registry.find(r => r.app === state.app) || {}).accounts || [];
   const accounts = [...new Set([...reg, ...appPosts.flatMap(accountsOf)])];
-  if (!accounts.includes(state.account)) state.account = accounts.find(a => pendingIn(appPosts.filter(p => accountsOf(p).includes(a)))) || accounts[0] || null;
+  if (!accounts.includes(state.account)) state.account = accounts.find(a => appPosts.some(p => accountsOf(p).includes(a))) || accounts[0] || null;
   const acctPosts = appPosts.filter(p => accountsOf(p).includes(state.account));
 
   // Level 3 — days that account has posts for, newest first.
@@ -459,18 +412,15 @@ function render() {
 
   $("#apps").replaceChildren(...apps.map(a => chip(appNames[a], a === state.app,
     () => { state.app = a; state.account = null; state.date = null; render(); },
-    pendingIn(state.posts.filter(p => p.app === a)))));
+    state.posts.filter(p => p.app === a).length)));
   $("#accounts").replaceChildren(...(accounts.length ? accounts.map(a => chip(a, a === state.account,
     () => { state.account = a; state.date = null; render(); },
-    pendingIn(appPosts.filter(p => accountsOf(p).includes(a))))) : [noneChip("Chưa có tài khoản")]));
+    appPosts.filter(p => accountsOf(p).includes(a)).length)) : [noneChip("Chưa có tài khoản")]));
   $("#dates").replaceChildren(...(dates.length ? dates.map(d => chip(fmtDate(d), d === state.date,
     () => { state.date = d; render(); },
-    pendingIn(acctPosts.filter(p => p.date === d)))) : [noneChip("Chưa có bài")]));
+    acctPosts.filter(p => p.date === d).length)) : [noneChip("Chưa có bài")]));
 
   const shown = acctPosts.filter(p => p.date === state.date);
-  const doneCount = shown.filter(p => state.posted[p.key]).length;
-  $("#progress-text").textContent = `${doneCount}/${shown.length} đã đăng`;
-  $("#progress-bar").style.width = shown.length ? (100 * doneCount / shown.length) + "%" : "0";
 
   const list = $("#list");
   if (!shown.length) {
@@ -482,33 +432,8 @@ function render() {
     list.appendChild(e);
     return;
   }
-  list.replaceChildren(...shown.sort((x, y) => (state.posted[x.key] ? 1 : 0) - (state.posted[y.key] ? 1 : 0)).map(postCard));
+  list.replaceChildren(...shown.map(postCard));
   list.style.display = "grid"; list.style.gap = "14px";
-}
-
-async function exportPosted() {
-  const keys = Object.keys(state.posted).sort();
-  if (!keys.length) { toast("Chưa đánh dấu bài nào"); return; }
-  const text = "ĐÃ ĐĂNG (" + keys.length + " bài):\n" + keys.join("\n");
-  try { await navigator.clipboard.writeText(text); toast("Đã copy, dán vào chat với Madison"); }
-  catch (e) { prompt("Copy đoạn này gửi cho Madison:", text); }
-}
-
-function importPosted() {
-  const txt = prompt("Dán danh sách key đã đăng (mỗi dòng một key, hoặc JSON):");
-  if (!txt) return;
-  const map = loadPosted();
-  let n = 0;
-  try {
-    const obj = JSON.parse(txt);
-    Object.entries(obj).forEach(([k, v]) => { if (!map[k]) { map[k] = v && typeof v === "object" ? v : { posted: true }; n++; } });
-  } catch (e) {
-    txt.split(/\s*\n\s*/).map(s => s.trim()).filter(s => /__/.test(s)).forEach(k => {
-      if (!map[k]) { map[k] = { posted: true, at: new Date().toISOString() }; n++; }
-    });
-  }
-  savePosted(map); state.posted = map; render();
-  toast(n ? `Đã nhập ${n} bài` : "Không có key mới");
 }
 
 async function start() {
@@ -522,10 +447,7 @@ async function start() {
     $("#list").innerHTML = '<div class="empty-state">Không tải được hàng chờ. Kiểm tra mạng rồi tải lại trang.</div>';
     return;
   }
-  state.posted = loadPosted();
   if (state.generated) $("#built").textContent = "Cập nhật: " + state.generated.replace("T", " ").slice(0, 16);
-  $("#export").addEventListener("click", exportPosted);
-  $("#import").addEventListener("click", importPosted);
   render();
 }
 start();
