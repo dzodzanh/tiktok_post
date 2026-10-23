@@ -930,32 +930,6 @@
       "video": ""
     },
     {
-      "key": "2026-10-23__no-contact__timeline-twist__01",
-      "date": "2026-10-23",
-      "app": "no-contact",
-      "app_name": "Better off",
-      "format": "timeline-twist",
-      "number": "01",
-      "variant": "TL",
-      "accounts": [
-        "Mira"
-      ],
-      "title": "they always come back",
-      "caption": "a whole new number just for this 🙃 #nocontact #theyalwayscomeback #breakup #healingera",
-      "music": "To be loved is to be changed - Noel",
-      "music_url": "",
-      "is_aigc": false,
-      "slides": [
-        "media/2026-10-23/no-contact/timeline-twist/01/01.jpg",
-        "media/2026-10-23/no-contact/timeline-twist/01/02.jpg",
-        "media/2026-10-23/no-contact/timeline-twist/01/03.jpg",
-        "media/2026-10-23/no-contact/timeline-twist/01/04.jpg",
-        "media/2026-10-23/no-contact/timeline-twist/01/05.jpg",
-        "media/2026-10-23/no-contact/timeline-twist/01/06.jpg"
-      ],
-      "video": ""
-    },
-    {
       "key": "2026-10-23__no-contact__timeline-twist__02",
       "date": "2026-10-23",
       "app": "no-contact",
@@ -1051,6 +1025,150 @@
         "media/2026-10-23/plant-doc/diagnosis/01/04.jpg"
       ],
       "video": ""
+    },
+    {
+      "key": "2026-10-24__no-contact__list__01",
+      "date": "2026-10-24",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "list",
+      "number": "01",
+      "variant": "LS",
+      "accounts": [
+        "Emma"
+      ],
+      "title": "week one no contact",
+      "caption": "week one is the whole fight 🤍 #nocontact #breakup #healingera #movingon",
+      "music": "original sound - 🩶 (luna.rivers1)",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-10-24/no-contact/list/01/01.jpg",
+        "media/2026-10-24/no-contact/list/01/02.jpg",
+        "media/2026-10-24/no-contact/list/01/03.jpg",
+        "media/2026-10-24/no-contact/list/01/04.jpg",
+        "media/2026-10-24/no-contact/list/01/05.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-10-24__no-contact__october-theory__02",
+      "date": "2026-10-24",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "october-theory",
+      "number": "02",
+      "variant": "OT",
+      "accounts": [
+        "Peyton"
+      ],
+      "title": "october theory",
+      "caption": "october can keep him 🍂 #octobertheory #nocontact #healingera #breakup",
+      "music": "mystery of love strings - gavinward",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-10-24/no-contact/october-theory/02/01.jpg",
+        "media/2026-10-24/no-contact/october-theory/02/02.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-10-24__no-contact__text-reaction__01",
+      "date": "2026-10-24",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "text-reaction",
+      "number": "01",
+      "variant": "TR",
+      "accounts": [
+        "Lily"
+      ],
+      "title": "",
+      "caption": "i should listen to her 🤍 #nocontact #breakup #healingera #bestfriend",
+      "music": "original sound - itgetssworse",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-10-24/no-contact/text-reaction/01/01.jpg",
+        "media/2026-10-24/no-contact/text-reaction/01/02.jpg",
+        "media/2026-10-24/no-contact/text-reaction/01/03.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-10-24__no-contact__timeline-twist__01",
+      "date": "2026-10-24",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "timeline-twist",
+      "number": "01",
+      "variant": "TL",
+      "accounts": [
+        "Mira"
+      ],
+      "title": "they always come back",
+      "caption": "a whole new number just for this 🙃 #nocontact #theyalwayscomeback #breakup #healingera",
+      "music": "To be loved is to be changed - Noel",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-10-24/no-contact/timeline-twist/01/01.jpg",
+        "media/2026-10-24/no-contact/timeline-twist/01/02.jpg",
+        "media/2026-10-24/no-contact/timeline-twist/01/03.jpg",
+        "media/2026-10-24/no-contact/timeline-twist/01/04.jpg",
+        "media/2026-10-24/no-contact/timeline-twist/01/05.jpg",
+        "media/2026-10-24/no-contact/timeline-twist/01/06.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-10-24__plant-doc__care__01",
+      "date": "2026-10-24",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "care",
+      "number": "01",
+      "variant": "B9",
+      "accounts": [
+        "Sofia"
+      ],
+      "title": "double your plants for free 🌱",
+      "caption": "one plant, endless plants 🌱 #propagation #pothos #plantcare #planttok #houseplants",
+      "music": "pick a calm trending sound in-app",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-10-24/plant-doc/care/01/01.jpg",
+        "media/2026-10-24/plant-doc/care/01/02.jpg",
+        "media/2026-10-24/plant-doc/care/01/03.jpg",
+        "media/2026-10-24/plant-doc/care/01/04.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-10-24__plant-doc__diagnosis__01",
+      "date": "2026-10-24",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "diagnosis",
+      "number": "01",
+      "variant": "A9",
+      "accounts": [
+        "Ava"
+      ],
+      "title": "time for a bigger pot? 🪴",
+      "caption": "go up one size, not three 🪴 #rootbound #repotting #plantcare #planttok #houseplants",
+      "music": "pick a calm trending sound in-app",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-10-24/plant-doc/diagnosis/01/01.jpg",
+        "media/2026-10-24/plant-doc/diagnosis/01/02.jpg",
+        "media/2026-10-24/plant-doc/diagnosis/01/03.jpg",
+        "media/2026-10-24/plant-doc/diagnosis/01/04.jpg"
+      ],
+      "video": ""
     }
   ],
   "registry": [
@@ -1076,5 +1194,5 @@
       ]
     }
   ],
-  "generated": "2026-10-23T21:11:39"
+  "generated": "2026-10-24T06:10:46"
 }
