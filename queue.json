@@ -1451,6 +1451,111 @@
       "video": ""
     },
     {
+      "key": "2026-10-27__no-contact__chloe__01",
+      "date": "2026-10-27",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "chloe",
+      "number": "01",
+      "variant": "",
+      "accounts": [
+        "Chloe"
+      ],
+      "title": "those who survived no contact… when did it stop feeling like this?",
+      "caption": "12 days in and i need to hear it gets better #nocontact #breakup #healingera #ex #fyp",
+      "music": "original sound - appple",
+      "music_url": "https://www.tiktok.com/music/original-sound-appple-7676871094327020296",
+      "is_aigc": true,
+      "slides": [
+        "media/2026-10-27/no-contact/chloe/01/01.jpg"
+      ],
+      "video": "media/2026-10-27/no-contact/chloe/01/video.mp4"
+    },
+    {
+      "key": "2026-10-27__no-contact__emma__01",
+      "date": "2026-10-27",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "emma",
+      "number": "01",
+      "variant": "",
+      "accounts": [
+        "Emma"
+      ],
+      "title": "one week of no contact. hardest week of my life",
+      "caption": "day 7. still here. #nocontact #breakup #healingjourney #exboyfriend #fyp",
+      "music": "original sound - appple",
+      "music_url": "https://www.tiktok.com/music/original-sound-appple-7676871094327020296",
+      "is_aigc": true,
+      "slides": [
+        "media/2026-10-27/no-contact/emma/01/01.jpg"
+      ],
+      "video": "media/2026-10-27/no-contact/emma/01/video.mp4"
+    },
+    {
+      "key": "2026-10-27__no-contact__lily__01",
+      "date": "2026-10-27",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "lily",
+      "number": "01",
+      "variant": "",
+      "accounts": [
+        "Lily"
+      ],
+      "title": "they say they always come back. 53 days. i stopped waiting",
+      "caption": "maybe he comes back. maybe i don't care anymore #nocontact #breakup #healed #theyalwayscomeback #fyp",
+      "music": "original sound - appple",
+      "music_url": "https://www.tiktok.com/music/original-sound-appple-7676871094327020296",
+      "is_aigc": true,
+      "slides": [
+        "media/2026-10-27/no-contact/lily/01/01.jpg"
+      ],
+      "video": "media/2026-10-27/no-contact/lily/01/video.mp4"
+    },
+    {
+      "key": "2026-10-27__no-contact__luna__01",
+      "date": "2026-10-27",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "luna",
+      "number": "01",
+      "variant": "",
+      "accounts": [
+        "Luna"
+      ],
+      "title": "39 days and i finally stopped checking who he follows",
+      "caption": "small wins count 🤍 #nocontact #breakup #healing #movingon #fyp",
+      "music": "original sound - appple",
+      "music_url": "https://www.tiktok.com/music/original-sound-appple-7676871094327020296",
+      "is_aigc": true,
+      "slides": [
+        "media/2026-10-27/no-contact/luna/01/01.jpg"
+      ],
+      "video": "media/2026-10-27/no-contact/luna/01/video.mp4"
+    },
+    {
+      "key": "2026-10-27__no-contact__mira__01",
+      "date": "2026-10-27",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "mira",
+      "number": "01",
+      "variant": "",
+      "accounts": [
+        "Mira"
+      ],
+      "title": "24 days. the urge to text him still hits hardest at night",
+      "caption": "nights are the worst part, right? #nocontact #breakup #healingjourney #ex #fyp",
+      "music": "original sound - appple",
+      "music_url": "https://www.tiktok.com/music/original-sound-appple-7676871094327020296",
+      "is_aigc": true,
+      "slides": [
+        "media/2026-10-27/no-contact/mira/01/01.jpg"
+      ],
+      "video": "media/2026-10-27/no-contact/mira/01/video.mp4"
+    },
+    {
       "key": "2026-10-27__plant-doc__ava-sullivan__01",
       "date": "2026-10-27",
       "app": "plant-doc",
@@ -1627,14 +1732,6 @@
   ],
   "registry": [
     {
-      "app": "crossi",
-      "app_name": "Crossi",
-      "accounts": [
-        "A",
-        "B"
-      ]
-    },
-    {
       "app": "no-contact",
       "app_name": "Better off",
       "accounts": [
@@ -1655,15 +1752,7 @@
         "Leaf Journal",
         "Ava Sullivan"
       ]
-    },
-    {
-      "app": "stombers",
-      "app_name": "Stombers",
-      "accounts": [
-        "A",
-        "B"
-      ]
     }
   ],
-  "generated": "2026-10-26T19:53:36"
+  "generated": "2026-10-26T19:54:20"
 }
