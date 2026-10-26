@@ -1627,6 +1627,14 @@
   ],
   "registry": [
     {
+      "app": "crossi",
+      "app_name": "Crossi",
+      "accounts": [
+        "A",
+        "B"
+      ]
+    },
+    {
       "app": "no-contact",
       "app_name": "Better off",
       "accounts": [
@@ -1647,7 +1655,15 @@
         "Leaf Journal",
         "Ava Sullivan"
       ]
+    },
+    {
+      "app": "stombers",
+      "app_name": "Stombers",
+      "accounts": [
+        "A",
+        "B"
+      ]
     }
   ],
-  "generated": "2026-10-26T08:28:24"
+  "generated": "2026-10-26T19:53:36"
 }
