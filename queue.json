@@ -2018,136 +2018,186 @@
       "video": ""
     },
     {
-      "key": "2026-10-30__no-contact__chloe__01",
+      "key": "2026-10-30__plant-doc__ava-sullivan__01",
       "date": "2026-10-30",
-      "app": "no-contact",
-      "app_name": "Better off",
-      "format": "chloe",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "ava-sullivan",
       "number": "01",
-      "variant": "TR",
+      "variant": "AS-FORGIVE",
       "accounts": [
-        "Chloe"
+        "Ava Sullivan"
       ],
-      "title": "",
-      "caption": "i needed to hear this today 🤍 #nocontact #breakup #healingera #ex #fyp",
-      "music": "original sound - tatyanna",
+      "title": "forgive a missed watering 🌵",
+      "caption": "save this if you travel 🌵 four plants that forgive a missed watering #planttok #plantcare #houseplants #plantparent #apartmentplants",
+      "music": "pick a calm trending sound in-app",
       "music_url": "",
       "is_aigc": false,
       "slides": [
-        "media/2026-10-30/no-contact/chloe/01/01.jpg",
-        "media/2026-10-30/no-contact/chloe/01/02.jpg",
-        "media/2026-10-30/no-contact/chloe/01/03.jpg"
+        "media/2026-10-30/plant-doc/ava-sullivan/01/01.jpg",
+        "media/2026-10-30/plant-doc/ava-sullivan/01/02.jpg",
+        "media/2026-10-30/plant-doc/ava-sullivan/01/03.jpg",
+        "media/2026-10-30/plant-doc/ava-sullivan/01/04.jpg",
+        "media/2026-10-30/plant-doc/ava-sullivan/01/05.jpg"
       ],
       "video": ""
     },
     {
-      "key": "2026-10-30__no-contact__emma__01",
+      "key": "2026-10-30__plant-doc__ava__01",
       "date": "2026-10-30",
-      "app": "no-contact",
-      "app_name": "Better off",
-      "format": "emma",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "ava",
       "number": "01",
-      "variant": "TR",
+      "variant": "A-SNAKE",
       "accounts": [
-        "Emma"
+        "Ava"
       ],
-      "title": "",
-      "caption": "she's right and i hate it 🤍 #nocontact #breakup #healingera #ex #fyp",
-      "music": "original sound - itgetssworse",
+      "title": "snake plant kindness 🐍",
+      "caption": "it wants less water than you think 🐍 #planttok #plantcare #houseplants #plantparent #snakeplant",
+      "music": "pick a calm trending sound in-app",
       "music_url": "",
       "is_aigc": false,
       "slides": [
-        "media/2026-10-30/no-contact/emma/01/01.jpg",
-        "media/2026-10-30/no-contact/emma/01/02.jpg",
-        "media/2026-10-30/no-contact/emma/01/03.jpg"
+        "media/2026-10-30/plant-doc/ava/01/01.jpg",
+        "media/2026-10-30/plant-doc/ava/01/02.jpg",
+        "media/2026-10-30/plant-doc/ava/01/03.jpg",
+        "media/2026-10-30/plant-doc/ava/01/04.jpg"
       ],
       "video": ""
     },
     {
-      "key": "2026-10-30__no-contact__lily__01",
+      "key": "2026-10-30__plant-doc__ava__02",
       "date": "2026-10-30",
-      "app": "no-contact",
-      "app_name": "Better off",
-      "format": "lily",
-      "number": "01",
-      "variant": "TL",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "ava",
+      "number": "02",
+      "variant": "A-ZZ",
       "accounts": [
-        "Lily"
+        "Ava"
       ],
-      "title": "one month",
-      "caption": "30 days of silence and he wants coffee now 🙃 #nocontact #breakup #healingera #theyalwayscomeback #fyp",
-      "music": "original sound - appple",
+      "title": "yellow zz leaves? 💛",
+      "caption": "zz plants rot from kindness, not neglect 💛 #planttok #plantcare #houseplants #plantparent #zzplant",
+      "music": "pick a calm trending sound in-app",
       "music_url": "",
       "is_aigc": false,
       "slides": [
-        "media/2026-10-30/no-contact/lily/01/01.jpg",
-        "media/2026-10-30/no-contact/lily/01/02.jpg",
-        "media/2026-10-30/no-contact/lily/01/03.jpg",
-        "media/2026-10-30/no-contact/lily/01/04.jpg",
-        "media/2026-10-30/no-contact/lily/01/05.jpg",
-        "media/2026-10-30/no-contact/lily/01/06.jpg"
+        "media/2026-10-30/plant-doc/ava/02/01.jpg",
+        "media/2026-10-30/plant-doc/ava/02/02.jpg",
+        "media/2026-10-30/plant-doc/ava/02/03.jpg",
+        "media/2026-10-30/plant-doc/ava/02/04.jpg"
       ],
       "video": ""
     },
     {
-      "key": "2026-10-30__no-contact__luna__01",
+      "key": "2026-10-30__plant-doc__leaf-journal__01",
       "date": "2026-10-30",
-      "app": "no-contact",
-      "app_name": "Better off",
-      "format": "luna",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "leaf-journal",
       "number": "01",
-      "variant": "AI",
+      "variant": "L-HOYA",
       "accounts": [
-        "Luna"
+        "Leaf Journal"
       ],
-      "title": "the days are fine. it's 2am that tests me",
-      "caption": "the quiet is the hard part, not the days #nocontact #breakup #healing #ex #fyp",
-      "music": "original sound - appple",
-      "music_url": "",
-      "is_aigc": true,
-      "slides": [],
-      "video": "media/2026-10-30/no-contact/luna/01/video.mp4"
-    },
-    {
-      "key": "2026-10-30__no-contact__mira__01",
-      "date": "2026-10-30",
-      "app": "no-contact",
-      "app_name": "Better off",
-      "format": "mira",
-      "number": "01",
-      "variant": "TL",
-      "accounts": [
-        "Mira"
-      ],
-      "title": "ten days",
-      "caption": "day 10 and he finally remembers my birthday 🙃 #nocontact #breakup #healingjourney #theyalwayscomeback #fyp",
-      "music": "original sound - appple",
+      "title": "my hoya bloomed 🌸",
+      "caption": "leave the stalk, it blooms again 🌸 #planttok #plantcare #houseplants #plantparent #hoya",
+      "music": "pick a calm trending sound in-app",
       "music_url": "",
       "is_aigc": false,
       "slides": [
-        "media/2026-10-30/no-contact/mira/01/01.jpg",
-        "media/2026-10-30/no-contact/mira/01/02.jpg",
-        "media/2026-10-30/no-contact/mira/01/03.jpg",
-        "media/2026-10-30/no-contact/mira/01/04.jpg",
-        "media/2026-10-30/no-contact/mira/01/05.jpg",
-        "media/2026-10-30/no-contact/mira/01/06.jpg"
+        "media/2026-10-30/plant-doc/leaf-journal/01/01.jpg",
+        "media/2026-10-30/plant-doc/leaf-journal/01/02.jpg",
+        "media/2026-10-30/plant-doc/leaf-journal/01/03.jpg",
+        "media/2026-10-30/plant-doc/leaf-journal/01/04.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-10-30__plant-doc__leaf-journal__02",
+      "date": "2026-10-30",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "leaf-journal",
+      "number": "02",
+      "variant": "L-CALADIUM",
+      "accounts": [
+        "Leaf Journal"
+      ],
+      "title": "caladium going dormant 🍂",
+      "caption": "not dead, just sleeping 🍂 #planttok #plantcare #houseplants #plantparent #caladium",
+      "music": "pick a calm trending sound in-app",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-10-30/plant-doc/leaf-journal/02/01.jpg",
+        "media/2026-10-30/plant-doc/leaf-journal/02/02.jpg",
+        "media/2026-10-30/plant-doc/leaf-journal/02/03.jpg",
+        "media/2026-10-30/plant-doc/leaf-journal/02/04.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-10-30__plant-doc__sofia__01",
+      "date": "2026-10-30",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "sofia",
+      "number": "01",
+      "variant": "S-NEST",
+      "accounts": [
+        "Sofia"
+      ],
+      "title": "bird's nest fern 🪺",
+      "caption": "never pour into the middle 🪺 #planttok #plantcare #houseplants #plantparent #ferns",
+      "music": "pick a calm trending sound in-app",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-10-30/plant-doc/sofia/01/01.jpg",
+        "media/2026-10-30/plant-doc/sofia/01/02.jpg",
+        "media/2026-10-30/plant-doc/sofia/01/03.jpg",
+        "media/2026-10-30/plant-doc/sofia/01/04.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-10-30__plant-doc__sofia__02",
+      "date": "2026-10-30",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "sofia",
+      "number": "02",
+      "variant": "S-TURN",
+      "accounts": [
+        "Sofia"
+      ],
+      "title": "turn your plant 🔄",
+      "caption": "easiest habit for a fuller plant 🔄 #planttok #plantcare #houseplants #plantparent #pilea",
+      "music": "pick a calm trending sound in-app",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-10-30/plant-doc/sofia/02/01.jpg",
+        "media/2026-10-30/plant-doc/sofia/02/02.jpg",
+        "media/2026-10-30/plant-doc/sofia/02/03.jpg",
+        "media/2026-10-30/plant-doc/sofia/02/04.jpg"
       ],
       "video": ""
     }
   ],
   "registry": [
     {
-      "app": "no-contact",
-      "app_name": "Better off",
+      "app": "plant-doc",
+      "app_name": "Plipo",
       "accounts": [
-        "Peyton",
-        "Mira",
-        "Chloe",
-        "Luna",
-        "Emma",
-        "Lily"
+        "Sofia",
+        "Ava",
+        "Leaf Journal",
+        "Ava Sullivan"
       ]
     }
   ],
-  "generated": "2026-10-29T16:13:24"
+  "generated": "2026-10-29T16:17:40"
 }
