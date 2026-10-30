@@ -2354,9 +2354,232 @@
         "media/2026-10-31/plant-doc/sofia/02/04.jpg"
       ],
       "video": ""
+    },
+    {
+      "key": "2026-11-01__no-contact__lily__01",
+      "date": "2026-11-01",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "lily",
+      "number": "01",
+      "variant": "AI",
+      "accounts": [
+        "Lily"
+      ],
+      "title": "when your phone buzzes at 1am and you pray it's not him (but kinda hope it is)",
+      "caption": "pray it's not him. kinda hope it is #nocontact #breakup #healing #ex #fyp",
+      "music": "original sound - appple",
+      "music_url": "",
+      "is_aigc": true,
+      "slides": [],
+      "video": "media/2026-11-01/no-contact/lily/01/video.mp4"
+    },
+    {
+      "key": "2026-11-01__no-contact__mira__01",
+      "date": "2026-11-01",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "mira",
+      "number": "01",
+      "variant": "TR",
+      "accounts": [
+        "Mira"
+      ],
+      "title": "",
+      "caption": "a year of silence and he picks today 🙃 #nocontact #breakup #healingera #ex #fyp",
+      "music": "original sound - itgetssworse",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-11-01/no-contact/mira/01/01.jpg",
+        "media/2026-11-01/no-contact/mira/01/02.jpg",
+        "media/2026-11-01/no-contact/mira/01/03.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-11-01__plant-doc__ava-sullivan__01",
+      "date": "2026-11-01",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "ava-sullivan",
+      "number": "01",
+      "variant": "AS-WATER",
+      "accounts": [
+        "Ava Sullivan"
+      ],
+      "title": "plants that root in water 💧",
+      "caption": "save this for your windowsill 💧 #planttok #plantcare #houseplants #plantparent #apartmentplants",
+      "music": "pick a calm trending sound in-app",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-11-01/plant-doc/ava-sullivan/01/01.jpg",
+        "media/2026-11-01/plant-doc/ava-sullivan/01/02.jpg",
+        "media/2026-11-01/plant-doc/ava-sullivan/01/03.jpg",
+        "media/2026-11-01/plant-doc/ava-sullivan/01/04.jpg",
+        "media/2026-11-01/plant-doc/ava-sullivan/01/05.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-11-01__plant-doc__ava__01",
+      "date": "2026-11-01",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "ava",
+      "number": "01",
+      "variant": "A-MITES",
+      "accounts": [
+        "Ava"
+      ],
+      "title": "tiny dots under the leaves? 🕷️",
+      "caption": "check the undersides 🕷️ #planttok #plantcare #houseplants #plantparent #plantpests",
+      "music": "pick a calm trending sound in-app",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-11-01/plant-doc/ava/01/01.jpg",
+        "media/2026-11-01/plant-doc/ava/01/02.jpg",
+        "media/2026-11-01/plant-doc/ava/01/03.jpg",
+        "media/2026-11-01/plant-doc/ava/01/04.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-11-01__plant-doc__ava__02",
+      "date": "2026-11-01",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "ava",
+      "number": "02",
+      "variant": "A-GNATS",
+      "accounts": [
+        "Ava"
+      ],
+      "title": "tiny black flies? 🪰",
+      "caption": "it's fungus gnats, and it's the soil 🪰 #planttok #plantcare #houseplants #plantparent #plantpests",
+      "music": "pick a calm trending sound in-app",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-11-01/plant-doc/ava/02/01.jpg",
+        "media/2026-11-01/plant-doc/ava/02/02.jpg",
+        "media/2026-11-01/plant-doc/ava/02/03.jpg",
+        "media/2026-11-01/plant-doc/ava/02/04.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-11-01__plant-doc__leaf-journal__01",
+      "date": "2026-11-01",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "leaf-journal",
+      "number": "01",
+      "variant": "L-POTHOS",
+      "accounts": [
+        "Leaf Journal"
+      ],
+      "title": "free pothos from one cutting 🌿",
+      "caption": "one cutting, a whole new plant 🌿 #planttok #plantcare #houseplants #plantparent #pothos",
+      "music": "pick a calm trending sound in-app",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-11-01/plant-doc/leaf-journal/01/01.jpg",
+        "media/2026-11-01/plant-doc/leaf-journal/01/02.jpg",
+        "media/2026-11-01/plant-doc/leaf-journal/01/03.jpg",
+        "media/2026-11-01/plant-doc/leaf-journal/01/04.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-11-01__plant-doc__leaf-journal__02",
+      "date": "2026-11-01",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "leaf-journal",
+      "number": "02",
+      "variant": "L-FEED",
+      "accounts": [
+        "Leaf Journal"
+      ],
+      "title": "how i feed my plants 🌿",
+      "caption": "less than the bottle says 🌿 #planttok #plantcare #houseplants #plantparent #fertilizer",
+      "music": "pick a calm trending sound in-app",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-11-01/plant-doc/leaf-journal/02/01.jpg",
+        "media/2026-11-01/plant-doc/leaf-journal/02/02.jpg",
+        "media/2026-11-01/plant-doc/leaf-journal/02/03.jpg",
+        "media/2026-11-01/plant-doc/leaf-journal/02/04.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-11-01__plant-doc__sofia__01",
+      "date": "2026-11-01",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "sofia",
+      "number": "01",
+      "variant": "S-SUCC",
+      "accounts": [
+        "Sofia"
+      ],
+      "title": "succulent watering 🌵",
+      "caption": "water less, but water well 🌵 #planttok #plantcare #houseplants #plantparent #succulents",
+      "music": "pick a calm trending sound in-app",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-11-01/plant-doc/sofia/01/01.jpg",
+        "media/2026-11-01/plant-doc/sofia/01/02.jpg",
+        "media/2026-11-01/plant-doc/sofia/01/03.jpg",
+        "media/2026-11-01/plant-doc/sofia/01/04.jpg"
+      ],
+      "video": ""
+    },
+    {
+      "key": "2026-11-01__plant-doc__sofia__02",
+      "date": "2026-11-01",
+      "app": "plant-doc",
+      "app_name": "Plipo",
+      "format": "sofia",
+      "number": "02",
+      "variant": "S-CACTUS",
+      "accounts": [
+        "Sofia"
+      ],
+      "title": "cactus in winter 🌵",
+      "caption": "your cactus is resting 🌵 #planttok #plantcare #houseplants #plantparent #cactus",
+      "music": "pick a calm trending sound in-app",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-11-01/plant-doc/sofia/02/01.jpg",
+        "media/2026-11-01/plant-doc/sofia/02/02.jpg",
+        "media/2026-11-01/plant-doc/sofia/02/03.jpg",
+        "media/2026-11-01/plant-doc/sofia/02/04.jpg"
+      ],
+      "video": ""
     }
   ],
   "registry": [
+    {
+      "app": "no-contact",
+      "app_name": "Better off",
+      "accounts": [
+        "Peyton",
+        "Mira",
+        "Chloe",
+        "Luna",
+        "Emma",
+        "Lily"
+      ]
+    },
     {
       "app": "plant-doc",
       "app_name": "Plipo",
@@ -2368,5 +2591,5 @@
       ]
     }
   ],
-  "generated": "2026-10-29T22:48:38"
+  "generated": "2026-10-30T08:56:07"
 }
