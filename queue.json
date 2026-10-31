@@ -2356,6 +2356,29 @@
       "video": ""
     },
     {
+      "key": "2026-11-01__no-contact__chloe__01",
+      "date": "2026-11-01",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "chloe",
+      "number": "01",
+      "variant": "TR",
+      "accounts": [
+        "Chloe"
+      ],
+      "title": "",
+      "caption": "she said what i needed to hear 🤍 #nocontact #breakup #healingera #ex #fyp",
+      "music": "original sound - tatyanna",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-11-01/no-contact/chloe/01/01.jpg",
+        "media/2026-11-01/no-contact/chloe/01/02.jpg",
+        "media/2026-11-01/no-contact/chloe/01/03.jpg"
+      ],
+      "video": ""
+    },
+    {
       "key": "2026-11-01__no-contact__lily__01",
       "date": "2026-11-01",
       "app": "no-contact",
@@ -2373,6 +2396,32 @@
       "is_aigc": true,
       "slides": [],
       "video": "media/2026-11-01/no-contact/lily/01/video.mp4"
+    },
+    {
+      "key": "2026-11-01__no-contact__luna__01",
+      "date": "2026-11-01",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "luna",
+      "number": "01",
+      "variant": "TL",
+      "accounts": [
+        "Luna"
+      ],
+      "title": "day 39",
+      "caption": "39 days and he's suddenly sorry 🙃 #nocontact #breakup #theyalwayscomeback #healingjourney #fyp",
+      "music": "original sound - appple",
+      "music_url": "",
+      "is_aigc": false,
+      "slides": [
+        "media/2026-11-01/no-contact/luna/01/01.jpg",
+        "media/2026-11-01/no-contact/luna/01/02.jpg",
+        "media/2026-11-01/no-contact/luna/01/03.jpg",
+        "media/2026-11-01/no-contact/luna/01/04.jpg",
+        "media/2026-11-01/no-contact/luna/01/05.jpg",
+        "media/2026-11-01/no-contact/luna/01/06.jpg"
+      ],
+      "video": ""
     },
     {
       "key": "2026-11-01__no-contact__mira__01",
@@ -2591,5 +2640,5 @@
       ]
     }
   ],
-  "generated": "2026-10-30T08:56:07"
+  "generated": "2026-10-31T11:09:06"
 }
