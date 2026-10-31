@@ -2379,6 +2379,25 @@
       "video": ""
     },
     {
+      "key": "2026-11-01__no-contact__emma__01",
+      "date": "2026-11-01",
+      "app": "no-contact",
+      "app_name": "Better off",
+      "format": "emma",
+      "number": "01",
+      "variant": "AI",
+      "accounts": [
+        "Emma"
+      ],
+      "title": "day 7 and i'm still not texting him",
+      "caption": "one week down #nocontact #breakup #healing #ex #fyp",
+      "music": "original sound - appple",
+      "music_url": "",
+      "is_aigc": true,
+      "slides": [],
+      "video": "media/2026-11-01/no-contact/emma/01/video.mp4"
+    },
+    {
       "key": "2026-11-01__no-contact__lily__01",
       "date": "2026-11-01",
       "app": "no-contact",
@@ -2640,5 +2659,5 @@
       ]
     }
   ],
-  "generated": "2026-10-31T11:09:06"
+  "generated": "2026-10-31T19:30:26"
 }
